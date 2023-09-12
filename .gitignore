@@ -1,1 +1,3 @@
 files/install/install-python.exe
+build/
+dist/
