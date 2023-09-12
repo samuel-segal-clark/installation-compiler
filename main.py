@@ -2,6 +2,7 @@ import configparser
 import os
 import urllib.request
 
+#TODO Ensure this works in Pyinstaller
 def system_has_python() -> bool:
     try:
         out = os.system('python --version')
@@ -16,7 +17,9 @@ def install_python_exe(python_path: str) -> None:
 
 def run_python_exe() -> None:
     os.system(r'files\install\install-python.exe')
-#TODO Check to see that python is not installed
+
+def pip_installation() -> None:
+    os.system(r'pip install -r files\install\requirements.txt --trusted-host=files.pythonhosted.org')
 
 config = configparser.ConfigParser()
 config.read(r'files\install\config.ini')
@@ -28,3 +31,6 @@ if not system_has_python():
     run_python_exe()
 else:
     print('Python already installed, continuing to pip')
+
+print('Installing pip requirements')
+pip_installation()
